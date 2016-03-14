@@ -1,0 +1,16 @@
+{
+    "name": "gittalk",
+    "dependencies": {
+        "express": "4.13.4",
+        "jade": "1.11.0",
+        "jstransformer-less": "1.0.0",
+        "jstransformer-uglify-js": "1.1.1",
+        "reveal.js": "3.2.0"
+    },
+    "engines": {
+        "node": ">=4.0.0"
+    },
+    "main": "index.js",
+    "private": true,
+    "version": "0.0.1"
+}

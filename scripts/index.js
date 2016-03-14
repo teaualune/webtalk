@@ -1,0 +1,2 @@
+/* global Reveal */
+Reveal.initialize();

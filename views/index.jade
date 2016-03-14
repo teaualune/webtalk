@@ -1,0 +1,16 @@
+html(lang="zh-TW")
+    head
+        title Git Talk 2016
+        style
+            | <style type="text/css">
+            include:less(compress=true) ../node_modules/reveal.js/css/reveal.css
+            include:less(compress=true) ../node_modules/reveal.js/css/theme/white.css
+            include:less(compress=true) ../styles/index.less
+            | </style>
+    body
+        .reveal: .slides
+            section
+                h1 Hi!
+        script
+            include:uglify-js ../node_modules/reveal.js/js/reveal.js
+            include:uglify-js ../scripts/index.js
