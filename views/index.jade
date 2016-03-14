@@ -9,8 +9,7 @@ html(lang="zh-TW")
             | </style>
     body
         .reveal: .slides
-            section
-                h1 Hi!
+            include slides.jade
         script
             include:uglify-js ../node_modules/reveal.js/js/reveal.js
             include:uglify-js ../scripts/index.js

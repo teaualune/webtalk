@@ -1,0 +1,340 @@
+section
+    h1 Git 程式碼版本控制與協作開發
+    h3 Mar. 16, 2016 | NTU Garage
+    p
+        | 曾台綸
+        | &nbsp;
+        a(href="mailto:teaualune@gmail.com") teaualune@gmail.com
+section
+    h1 Agenda
+    ul
+        li 什麼是 git
+        li 名詞介紹
+        li 指令 &amp; 概念
+        li 實機操作
+        li 進階概念與操作
+
+section
+    h1 什麼是 git？
+    img(src="https://git-scm.com/images/logo@2x.png")
+section
+    section
+        h1 做為SCM
+        ul
+            li 程式碼管理工具（Source Control Management）
+            li 版本管理與控制（Version Control）
+    section
+        h2 有什麼好處？
+        ul
+            li Same project, different versions
+            li 方便合作開發
+            li 回溯過去，補救錯誤
+    section
+        h2 特色
+        ul
+            li 分散式管理，不需要大家每次都得同步到某個地方
+            li 分支（branch）簡單，方便分心開發別的功能後再合併（merge）回去
+            li 以一行行程式碼（line）為最小單位進行版本間的比較
+section
+    h1 不只是管理程式碼
+    ul
+        li 分散式（Decentralized）檔案系統
+        li
+            | 管理二進位檔案
+            ul
+                li 圖檔
+                li 壓縮檔
+                li PDF
+        li 書籍、文章、論文寫作
+section
+    section: h1 git 的常見形式
+    section
+        p Command Line
+        img(src="https://upload.wikimedia.org/wikipedia/en/f/fc/Git_session.png")
+    section
+        p SourceTree
+        img(src="https://www.sourcetreeapp.com/images/hero_mac_all.png")
+section
+    section: h1 誰需要/適合用 git/SCM？
+    section
+        p 工程師：可大幅改善開發流程
+        p IT/DevOps：用 git 做為佈署的形式（e.g. Docker、Jenkins CI）
+        p 設計師：HTML/CSS/AI/PS 檔案管理
+        p 研究生：論文管理
+section
+    section: h1 git 的缺點？
+    section
+        h2 With Great Power Comes Great Responsibility.
+        ul
+            li 功能太強大，操作起來容易混淆或失誤
+            li 許多指令不方便補救，需慎重對待
+    section
+        h2 很難學！
+        ul
+            li 因為功能太強，所以難度很高
+            li 有其他更容易的工具，例如 SVN、Mercurial
+//- section
+    h1 除了 git 的選擇
+    ul
+        li SVN
+        li Mercurial
+
+section
+    h1 名詞介紹
+    ul
+        li Repository
+        li Commit
+        li Branch
+        //- li Blob &amp; Tree
+        li Tag
+section
+    h2 Repository 容器
+    ul
+        li 代表一個 git 專案
+        li 以資料夾為單位
+section
+    h2 Commit 提交
+    ul
+        li 一個 commit 可以代表一個「版本」
+        li 用來儲存並表示本次專案的變更內容
+        li 版本控制的重點：可以在不同的版本之間檢視、比較、回復
+section
+    h2 Branch 分支
+    ul
+        li 由一連串的提交過程（commits）所構成的分支
+        li 每個容器可以有一個以上的分支
+        li
+            | 主幹道稱為
+            | &nbsp;
+            code master
+        li 開發時能隨意的建立、切換、合併分支來幫助開發
+    h1 TODO IMG
+//- section
+    h3 Blob
+    h3 Tree
+section
+    section
+        h2 Tag 標籤
+        ul
+            li 用來指向一個特定的 commit
+            li 常被做為對外發表的版本號碼
+        h1 TODO IMG
+    section
+        h2 HEAD
+        ul
+            li 一種特殊的標籤，指向目前位於哪一個 commit
+            li 電腦資料夾內的檔案狀態會呈現此 commit 的內容
+            li 通常會都是指向某個分支的最尾端
+            li 如果和分支脫節了，則被稱為 detached 狀態
+        h1 TODO IMG
+section
+    h2 Remote 遠端容器
+    ul
+        li 除了本地端（local）使用 git 以外，可以配合 remote 把專案擺放到遠端伺服器
+        li 被擺放的伺服器稱為 git server
+        li 知名的 GitHub、Bitbucket 就是提供遠端容器的雲端服務商
+        li 使用「push」、「pull」和遠端容器進行專案同步
+
+section
+    h1 基礎指令
+    ul
+        li init
+        li add
+        li commit
+        li branch/checkout
+        li status
+        li log
+        li diff
+section
+    section
+        pre git init
+        p 建立一個新的 repository
+        pre git add abc.txt
+        p
+            | 將
+            | &nbsp;
+            code abc.txt
+            |  加入 git 進行管理
+    section
+        pre git commit -m "first commit"
+        ul
+            li 建立一個新的 commit
+            li 訊息為必填
+    section
+        pre git branch test
+        p
+            | 建立一個新的 branch 並命名為
+            | &nbsp;
+            code test
+    section
+        pre git checkout test
+        p
+            | 前往
+            | &nbsp;
+            code test
+            |  這個 branch
+    section
+        pre git checkout master
+        p 回到主要的 branch
+    section
+        pre git status
+        p 檢視目前 repository 的狀態
+    section
+        pre git log
+        p 檢視目前 branch 的 commit 記錄
+    section
+        pre git diff
+        p （還沒 commit 時）檢視改了哪些檔案和內容
+
+section
+    h1 更多概念
+    ul
+        li 檔案三態
+        li 分支合併與衝突
+        li .gitignore
+section
+    h2 檔案的三個狀態
+    section
+        p(style="color:red;") dirty: 檔案被修改過
+    section
+        p(style="color:green;") staged: 檔案已準備要被 commit
+    section
+        p clean: 檔案已被 commit
+    section
+        img
+section
+    h2 分支合併
+    pre git merge other_branch
+    p
+        | 使用
+        | &nbsp;
+        code merge
+        |  指令進行分支合併，將
+        | &nbsp;
+        code other_branch
+        |  的內容合併回目前所在的分支
+section
+    section
+        p 合併前
+    section
+        p 合併後
+section
+    h2 Conflict 衝突
+    ul
+        li 當合併分支時，兩邊都改到同樣的內容時發生的現象
+        li: b 初學者最害怕看到的事情RRRRR
+section
+    h2 解消衝突
+    ul
+        li 衝突的檔案會標記成 dirty 狀態，需要自行進行解消（resolve）程序
+        li resolve 後再進行 add/commit，才算是完成合併
+section
+    p: code .gitignore
+    ul
+        li 在容器裡面使用的特殊檔案，用來敘述不要加進 git 的檔案或資料夾
+        li
+            | 哪些東西不應該被加入 git？
+            ul
+                li 編譯生成的執行檔
+                li 可以用套件管理工具安裝的內容（e.g. node_modules）
+                li OS X 的 .DS_Store 或 Windows 的 desktop.ini
+        li
+            | 不同的程式語言有不同的常用設定，詳見
+            a(href="http://gitignore.io", target="_blank") gitignore.io
+
+section
+    h1 遠端容器介紹與使用
+section
+    h2 GitHub
+    ul
+        li 最知名的 git 容器管理服務
+        li
+            | 身兼多重功能/意義：
+            ul
+                li 工程師的社群、秀實力的場所
+                li 獵人頭挖角的好去處
+                li 自動化安裝套件時的程式碼來源（例如 npm、gem 等套件管理工具）
+        li
+            | 免費使用，但
+            b 對 private repository 收費
+            del 反正code擺那邊也不太會有人去看
+section
+    h2 BitBucket
+    ul
+        li 可擺放 git 或 Mercurial 專案
+        li
+            | 和 GitHub 收費模式相反：
+            ul
+                li private repository 免費
+                li 七人以上協做同一個專案收費
+        li 初期新創的好選擇
+section
+    h2 將專案擺上 GitHub 或其他遠端容器
+    section
+        p 和遠端容器建立關係
+        pre git remote add origin git@github.com:teaualune/gittalk.git
+        p
+            b origin
+            |  是我們在本地端幫遠端容器取的代號名稱，一般大家約定成俗使用此單字命名
+    section
+        p 上傳專案內容
+        pre git push origin master
+        p
+            | 意即將本地容器的內容推送到遠端（
+            code origin
+            | ）的&nbsp;
+            code master
+            |  分支上
+    section
+        p 下載最新的專案內容
+        pre git pull origin master
+    section
+        p 直接下載現存的遠端容器內容
+        pre git clone git@github.com:teaualune/gittalk.git
+        ul
+            li
+                | 直接建立一個本地的 repository，內容和遠端的一模一樣，同時設定好&nbsp;
+                code origin
+                | 這個 remote 關係
+            li 接下來就是一般的 push 和 pull
+section
+    h2 Pull Request (PR)
+    ul
+        li 在 GitHub 和 Bitbucket 常見到的合作開發形式
+        li 名字意思是「我替你的專案寫了這些內容，麻煩你 pull 下來看看並考慮將這些內容併入你的專案」
+        li 不同的專案主持人會有不同的 PR 處理方法
+
+section
+    h1 Best Practices
+    section
+        p 每個 commit 儘量精簡，一個 commit 做一件事
+        ul
+            li 例如「fix a bug that...」
+            li 不要「fix a bug and add some features...」
+    section
+        p 善用分支開發
+        ul
+            li 可以針對一項功能開個 branch，裡面的 commit 都是用來開發此功能
+            li 等開發完畢再合併回主幹道
+            li 或是把專案分成「dev」、「release」、「test」等功能導向的分支
+    //- section
+        p 分散式開發 &plus; pull requests
+
+section
+    h1 實機操作
+section
+    h2 安裝 git
+    ul
+        li
+            | Ubuntu:&nbsp;
+            code apt-get install git
+        li OS X: 安裝 Xcode
+        li
+            | Windows:&nbsp;
+            ul
+                li
+                    | Git for Windows&nbsp;
+                    a(href="http://msysgit.github.io/", target="_blank") http://msysgit.github.io
+                li
+                    | SourceTree&nbsp;
+                    a(href="http://www.sourcetreeapp.com/", target="_blank") http://www.sourcetreeapp.com
