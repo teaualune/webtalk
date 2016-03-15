@@ -9,8 +9,8 @@ section
     h1 Agenda
     ul
         li 什麼是 git
-        li 名詞介紹
-        li 指令 &amp; 概念
+        li 名詞與觀念介紹
+        li 指令介紹
         li 實機操作
         li 進階概念與操作
 
@@ -50,7 +50,7 @@ section
     section: h1 git 的常見形式
     section
         p Command Line
-        img(src="images/git_session.png")
+        img(src="images/gitcommand.png")
     section
         p SourceTree
         img(src="https://www.sourcetreeapp.com/images/hero_mac_all.png")
@@ -93,13 +93,19 @@ section
         li Mercurial
 
 section
-    h1 名詞介紹
-    ul
+    h1 名詞與觀念介紹
+    table(sytle="border:0;"): tbody: tr
+    td: ul
         li Repository
         li Commit
         li Branch
         //- li Blob &amp; Tree
         li Tag
+    td: ul
+        li 分支合併與衝突
+        li 檔案三態
+        li .gitignore
+        li Remote
 section
     h2 Repository 容器
     ul
@@ -139,6 +145,86 @@ section
             li 通常會都是指向某個分支的最尾端
             li 如果和分支脫節了，則被稱為 detached 狀態
         img(src="images/intro_head.png")
+
+section
+    h2 分支合併
+    pre git merge feature1
+    section
+        p
+            | 使用&nbsp;
+            code merge
+            |  指令進行分支合併，將&nbsp;
+            code feature1
+            |  的內容合併回目前所在的分支
+    section
+        img(src="images/merge_before.png")
+        div(style="text-align:right;"): small 合併前
+    section
+        img(src="images/merge_after.png")
+        div(style="text-align:right;"): small 合併後
+section
+    h2 Conflict 衝突
+    ul
+        li 當合併分支時，兩邊都改到同樣的內容時發生的現象
+        li
+            b 初學者最害怕看到的事情
+            br
+            | ◢▆▅▄▃ 崩╰(〒皿〒)╯潰 ▃▄▅▆◣
+section
+    h2 解消衝突
+    ul
+        li 發生衝突時還不會產生新的 commit，需要自行進行解消（resolve）程序
+        li resolve 後再進行 add/commit，才算是完成合併
+
+section
+    h2: code .gitignore
+    ul
+        li 在容器裡面使用的特殊檔案，用來敘述不要加進 git 的檔案或資料夾
+        li
+            | 哪些東西不應該被加入 git？
+            ul
+                li 編譯生成的執行檔
+                li 可以用套件管理工具安裝的內容（e.g. node_modules）
+                li OS X 的 .DS_Store 或 Windows 的 desktop.ini
+        li
+            | 不同的程式語言有不同的常用設定，詳見&nbsp;
+            a(href="http://gitignore.io", target="_blank") gitignore.io
+
+section
+    h2 檔案/資料夾在 git 裡的三個狀態
+    section
+        ol
+            li dirty
+            li staged
+            li clean
+    section
+        h3 0. Untracked
+        p 還沒受到 git 控管，但擺在 git 容器資料夾內的檔案
+        img(src="images/status_untracked.png")
+    section
+        h3(style="color:red;") 1. Dirty (modified)
+        p 檔案被修改過，跟上一次 commit 的內容有差異
+        img(src="images/status_dirty.png")
+    section
+        h3(style="color:green;") 2. Staged
+        ul
+            li 本次的檔案修改結果已準備好要被 commit
+            li
+                | 使用&nbsp;
+                code git add
+                |  將檔案從 dirty/untracked 變成 staged 狀態
+            li 仍為 dirty/untracked 狀態的修改不會被 commit
+        img(src="images/status_staged.png")
+    section
+        h3 3. Clean (unmodified)
+        p
+            | 使用&nbsp;
+            code  git commit
+            |  完成 commit 後回到 clean 狀態
+        img(src="images/status_clean.png")
+    section
+        img(src="images/dirty-staged-clean.png")
+
 section
     h2 Remote 遠端容器
     ul
@@ -146,6 +232,75 @@ section
         li 被擺放的伺服器稱為 git server
         li 知名的 GitHub、Bitbucket 就是提供遠端容器的雲端服務商
         li 使用「push」、「pull」和遠端容器進行專案同步
+
+section
+    h1 遠端容器介紹與使用
+section
+    h2: a(href="https://github.com", target="_blank") GitHub
+    ul
+        li 最知名的 git 容器管理服務
+        li
+            | 身兼多重功能/意義：
+            ul
+                li 工程師的社群、秀實力的場所
+                li 獵人頭挖角的好去處
+                li 自動化安裝套件時的程式碼來源（例如 npm、gem 等套件管理工具）
+        li
+            | 免費使用，但
+            b 對 private repository 收費
+            del 反正code擺那邊也不太會有人去看
+section
+    h2: a(href="https://bitbucket.org", target="_blank") BitBucket
+    ul
+        li 可擺放 git 或 Mercurial 專案
+        li
+            | 和 GitHub 收費模式相反：
+            ul
+                li private repository 免費
+                li 七人以上協做同一個專案收費
+        li 初期新創的好選擇
+section
+    h2 將專案擺上 GitHub 或其他遠端容器
+    section
+        h3 remote add
+        p 和遠端容器建立關係
+        pre git remote add origin git@github.com:teaualune/gittalk.git
+        p
+            b origin
+            |  是我們在本地端幫遠端容器取的代號名稱，一般大家約定成俗使用此單字命名
+    section
+        h3 push
+        p 上傳專案內容
+        pre git push origin master
+        p
+            | 意即將本地容器的內容推送到遠端（
+            code origin
+            | ）的&nbsp;
+            code master
+            |  分支上
+    section
+        h3 pull
+        ul
+            li 下載最新的專案內容
+            li 實際上等同於「fetch」和「merge」的二合一指令
+        pre git pull origin master
+    section
+        h3 clone
+        p 直接下載現存的遠端容器內容
+        pre git clone git@github.com:teaualune/gittalk.git
+        ul
+            li
+                | 直接建立一個本地的 repository，內容和遠端的一模一樣，同時設定好&nbsp;
+                code origin
+                | 這個 remote 關係
+            li 接下來就是一般的 push 和 pull
+section
+    h2 Pull Request (PR)
+    ul
+        li 在 GitHub 和 Bitbucket 常見到的合作開發形式
+        li 名字意思是「我替你的專案寫了這些內容，麻煩你 pull 下來看看並考慮將這些內容併入你的專案」
+        li 不同的專案主持人會有不同的 PR 處理方法
+        li: a(href="https://github.com/pulls?q=is%3Apr+author%3Ateaualune", target="_blank") 範例
 
 section
     h1 基礎指令
@@ -196,130 +351,18 @@ section
         p （還沒 commit 時）檢視改了哪些檔案和內容
 
 section
-    h1 更多概念
-    ul
-        li 檔案三態
-        li 分支合併與衝突
-        li .gitignore
-section
-    h2 檔案的三個狀態
-    section
-        p(style="color:red;") dirty: 檔案被修改過
-    section
-        p(style="color:green;") staged: 檔案已準備要被 commit
-    section
-        p clean: 檔案已被 commit
-    section
-        h1 TODO
-section
-    h2 分支合併
-    section
-        pre git merge feature1
-        p
-            | 使用&nbsp;
-            code merge
-            |  指令進行分支合併，將&nbsp;
-            code feature1
-            |  的內容合併回目前所在的分支
-    section
-        p 合併前
-        img(src="images/merge_before.png")
-    section
-        p 合併後
-        img(src="images/merge_after.png")
-section
-    h2 Conflict 衝突
-    ul
-        li 當合併分支時，兩邊都改到同樣的內容時發生的現象
-        li: b 初學者最害怕看到的事情RRRRR
-section
-    h2 解消衝突
-    ul
-        li 衝突的檔案會標記成 dirty 狀態，需要自行進行解消（resolve）程序
-        li resolve 後再進行 add/commit，才算是完成合併
-section
-    p: code .gitignore
-    ul
-        li 在容器裡面使用的特殊檔案，用來敘述不要加進 git 的檔案或資料夾
-        li
-            | 哪些東西不應該被加入 git？
-            ul
-                li 編譯生成的執行檔
-                li 可以用套件管理工具安裝的內容（e.g. node_modules）
-                li OS X 的 .DS_Store 或 Windows 的 desktop.ini
-        li
-            | 不同的程式語言有不同的常用設定，詳見
-            a(href="http://gitignore.io", target="_blank") gitignore.io
-
-section
-    h1 遠端容器介紹與使用
-section
-    h2 GitHub
-    ul
-        li 最知名的 git 容器管理服務
-        li
-            | 身兼多重功能/意義：
-            ul
-                li 工程師的社群、秀實力的場所
-                li 獵人頭挖角的好去處
-                li 自動化安裝套件時的程式碼來源（例如 npm、gem 等套件管理工具）
-        li
-            | 免費使用，但
-            b 對 private repository 收費
-            del 反正code擺那邊也不太會有人去看
-section
-    h2 BitBucket
-    ul
-        li 可擺放 git 或 Mercurial 專案
-        li
-            | 和 GitHub 收費模式相反：
-            ul
-                li private repository 免費
-                li 七人以上協做同一個專案收費
-        li 初期新創的好選擇
-section
-    h2 將專案擺上 GitHub 或其他遠端容器
-    section
-        p 和遠端容器建立關係
-        pre git remote add origin git@github.com:teaualune/gittalk.git
-        p
-            b origin
-            |  是我們在本地端幫遠端容器取的代號名稱，一般大家約定成俗使用此單字命名
-    section
-        p 上傳專案內容
-        pre git push origin master
-        p
-            | 意即將本地容器的內容推送到遠端（
-            code origin
-            | ）的&nbsp;
-            code master
-            |  分支上
-    section
-        p 下載最新的專案內容
-        pre git pull origin master
-    section
-        p 直接下載現存的遠端容器內容
-        pre git clone git@github.com:teaualune/gittalk.git
-        ul
-            li
-                | 直接建立一個本地的 repository，內容和遠端的一模一樣，同時設定好&nbsp;
-                code origin
-                | 這個 remote 關係
-            li 接下來就是一般的 push 和 pull
-section
-    h2 Pull Request (PR)
-    ul
-        li 在 GitHub 和 Bitbucket 常見到的合作開發形式
-        li 名字意思是「我替你的專案寫了這些內容，麻煩你 pull 下來看看並考慮將這些內容併入你的專案」
-        li 不同的專案主持人會有不同的 PR 處理方法
-
-section
     h1 Best Practices
     section
-        p 每個 commit 儘量精簡，一個 commit 做一件事
         ul
-            li 例如「fix a bug that...」
-            li 不要「fix a bug and add some features...」
+            li
+                | 常用&nbsp;
+                code git status
+                |  檢視目前 git 容器狀態
+            li
+                | 每個 commit 儘量精簡，一個 commit 做一件事
+                ul
+                    li 例如「fix a bug that...」
+                    li 不要「fix a bug and add some features...」
     section
         p 善用分支開發
         ul
@@ -347,3 +390,104 @@ section
                 li
                     | SourceTree&nbsp;
                     a(href="http://www.sourcetreeapp.com/", target="_blank") http://www.sourcetreeapp.com
+
+section
+    h1 進階概念與操作
+    ul
+        li 版本回溯
+        li stash
+        li squashed merge
+        li rebase
+        li rebase pull
+        li force push
+section
+    h2 版本回溯
+    section
+        p 以下為常用的指令：
+        ul
+            li rm
+            li reset
+            li revert
+            li checkout
+    section
+        h2: code git rm
+        ul
+            li
+                | 使用&nbsp;
+                code git rm abc.txt
+                |  將 abc.txt 檔案從 git 移除
+            li rm 屬於 staged 改動，需使用 commit 來存回 git
+            li 加上 --cached 避免直接把整個檔案砍掉，也就是變回 untracked
+    section
+        h2: code git reset --hard HEAD
+        ul
+            li reset 用途多樣，但最常用的方式是用來重置 HEAD
+            li
+                | 將所有檔案的 dirty 狀態全部往回變成 clean 狀態
+                b （一旦變回去就無法復原）
+            li
+                | 或是使用&nbsp;
+                code git reset HEAD abc.txt
+                |  將 abc.txt 從 staged 變回 dirty 狀態
+    section
+        h2: code git revert COMMIT_NUMBER
+        ul
+            li 建立一個新的 commit，內容和 COMMIT_NUMBER 剛好相反
+            li 並非單純的回溯版本，而是將「回溯版本」這件事實也記錄進 git
+    section
+        h2: code git checkout abc.txt
+        p 將 abc.txt 從 dirty 變回 clean 狀態，同樣是無法復原的操作
+section
+    h2 檔案三態（更新）
+    img(src="images/dirty-staged-clean-2.png")
+section
+    h2: code git stash
+    ul
+        li 用來「暫存」目前 dirty/staged 狀態的改動
+        li
+            | 使用&nbsp;
+            code git stash apply
+            |  把暫存擺回來
+        li 多人協作時常用來搭配 pull 使用，避免 pull 下來產生衝突：
+    pre
+        | git stash
+        br
+        | git pull origin master
+        br
+        | git stash apply
+        br
+        | git commit ...
+        br
+        | git push origin master
+section
+    h2 Squashed Merge
+    pre git merge --squash feature1
+    section
+        ul
+            li 壓縮 feature1 的所有 commit 記錄變成 staged 狀態
+            li 適合用來合併小型分支，讓線圖看起來簡潔一點
+    section: img(src="images/before_merge_rebase.png")
+    section: img(src="images/after_merge_squash.png")
+section
+    h2: code git rebase
+    p
+        | （在 feature1 時）
+        code git rebase master
+    section
+        ul
+            li 將 feature1 整條線路搬到 master 的最前面
+            li 同樣可用來精簡線路
+    section: img(src="images/before_merge_rebase.png")
+    section: img(src="images/rebase.png")
+section
+    h2 Rebase Pull
+    section
+        pre git pull --rebase origin master
+        ul
+            li pull 指令的變形，相當於「fetch」和「rebase」二合一
+            li 同樣相當常用於多人協作
+    section: img(src="images/before-pull-rebase.png")
+    section: img(src="images/after-pull-rebase.png")
+
+section
+    h1 Thank You!
