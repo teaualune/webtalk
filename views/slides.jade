@@ -16,7 +16,8 @@ section
 
 section
     h1 什麼是 git？
-    img(src="https://git-scm.com/images/logo@2x.png")
+    img(src="images/git-logo.svg.png")
+    p(style="text-align:right;"): small CC 3.0 by Jason Long
 section
     section
         h1 做為SCM
@@ -32,35 +33,43 @@ section
     section
         h2 特色
         ul
-            li 分散式管理，不需要大家每次都得同步到某個地方
+            li 分散式（Decentralized）管理，不需要大家每次都得同步到某個地方
             li 分支（branch）簡單，方便分心開發別的功能後再合併（merge）回去
             li 以一行行程式碼（line）為最小單位進行版本間的比較
-section
-    h1 不只是管理程式碼
-    ul
-        li 分散式（Decentralized）檔案系統
-        li
-            | 管理二進位檔案
-            ul
-                li 圖檔
-                li 壓縮檔
-                li PDF
-        li 書籍、文章、論文寫作
+    section
+        h1 不只是管理程式碼
+        ul
+            li
+                | 管理二進位檔案
+                ul
+                    li 圖檔
+                    li 壓縮檔
+                    li PDF
+            li 書籍、文章、論文寫作
 section
     section: h1 git 的常見形式
     section
         p Command Line
-        img(src="https://upload.wikimedia.org/wikipedia/en/f/fc/Git_session.png")
+        img(src="images/git_session.png")
     section
         p SourceTree
         img(src="https://www.sourcetreeapp.com/images/hero_mac_all.png")
 section
     section: h1 誰需要/適合用 git/SCM？
     section
-        p 工程師：可大幅改善開發流程
-        p IT/DevOps：用 git 做為佈署的形式（e.g. Docker、Jenkins CI）
-        p 設計師：HTML/CSS/AI/PS 檔案管理
-        p 研究生：論文管理
+        table(style="font-size:120%;"): tbody
+            tr
+                td 工程師
+                td 可大幅改善開發流程
+            tr
+                td IT/DevOps
+                td 用 git 做為佈署的形式（e.g. Docker、Jenkins CI）
+            tr
+                td 設計師
+                td HTML/CSS/AI/PS 檔案管理
+            tr
+                td 研究生
+                td 論文管理
 section
     section: h1 git 的缺點？
     section
@@ -72,7 +81,11 @@ section
         h2 很難學！
         ul
             li 因為功能太強，所以難度很高
-            li 有其他更容易的工具，例如 SVN、Mercurial
+            li
+                | 有其他更容易的工具，例如&nbsp;
+                a(href="https://subversion.apache.org", target="_blank") SVN
+                | 、
+                a(href="https://www.mercurial-scm.org", target="_blank") Mercurial
 //- section
     h1 除了 git 的選擇
     ul
@@ -104,11 +117,10 @@ section
         li 由一連串的提交過程（commits）所構成的分支
         li 每個容器可以有一個以上的分支
         li
-            | 主幹道稱為
-            | &nbsp;
+            | 主幹道稱為&nbsp;
             code master
         li 開發時能隨意的建立、切換、合併分支來幫助開發
-    h1 TODO IMG
+    img(src="images/intro_branch.png")
 //- section
     h3 Blob
     h3 Tree
@@ -118,7 +130,7 @@ section
         ul
             li 用來指向一個特定的 commit
             li 常被做為對外發表的版本號碼
-        h1 TODO IMG
+        img(src="images/intro_tag.png")
     section
         h2 HEAD
         ul
@@ -126,7 +138,7 @@ section
             li 電腦資料夾內的檔案狀態會呈現此 commit 的內容
             li 通常會都是指向某個分支的最尾端
             li 如果和分支脫節了，則被稱為 detached 狀態
-        h1 TODO IMG
+        img(src="images/intro_head.png")
 section
     h2 Remote 遠端容器
     ul
@@ -151,8 +163,7 @@ section
         p 建立一個新的 repository
         pre git add abc.txt
         p
-            | 將
-            | &nbsp;
+            | 將&nbsp;
             code abc.txt
             |  加入 git 進行管理
     section
@@ -163,14 +174,12 @@ section
     section
         pre git branch test
         p
-            | 建立一個新的 branch 並命名為
-            | &nbsp;
+            | 建立一個新的 branch 並命名為&nbsp;
             code test
     section
         pre git checkout test
         p
-            | 前往
-            | &nbsp;
+            | 前往&nbsp;
             code test
             |  這個 branch
     section
@@ -201,23 +210,23 @@ section
     section
         p clean: 檔案已被 commit
     section
-        img
+        h1 TODO
 section
     h2 分支合併
-    pre git merge other_branch
-    p
-        | 使用
-        | &nbsp;
-        code merge
-        |  指令進行分支合併，將
-        | &nbsp;
-        code other_branch
-        |  的內容合併回目前所在的分支
-section
+    section
+        pre git merge feature1
+        p
+            | 使用&nbsp;
+            code merge
+            |  指令進行分支合併，將&nbsp;
+            code feature1
+            |  的內容合併回目前所在的分支
     section
         p 合併前
+        img(src="images/merge_before.png")
     section
         p 合併後
+        img(src="images/merge_after.png")
 section
     h2 Conflict 衝突
     ul

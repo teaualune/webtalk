@@ -7,7 +7,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// app.use(express.static('public'));
+app.use('/images', express.static('images'));
 app.get('/', (req, res) => {
     res.render('index');
 });
