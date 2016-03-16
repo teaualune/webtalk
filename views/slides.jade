@@ -282,7 +282,7 @@ section
         h3 pull
         ul
             li 下載最新的專案內容
-            li 實際上等同於「fetch」和「merge」的二合一指令
+            li 實際上為「fetch」和「merge」的二合一指令
         pre git pull origin master
     section
         h3 clone
@@ -301,6 +301,25 @@ section
         li 名字意思是「我替你的專案寫了這些內容，麻煩你 pull 下來看看並考慮將這些內容併入你的專案」
         li 不同的專案主持人會有不同的 PR 處理方法
         li: a(href="https://github.com/pulls?q=is%3Apr+author%3Ateaualune", target="_blank") 範例
+
+section
+    h1 實機操作
+section
+    h2 安裝 git
+    ul
+        li
+            | Ubuntu:&nbsp;
+            code apt-get install git
+        li OS X: 安裝 Xcode
+        li
+            | Windows:&nbsp;
+            ul
+                li
+                    | Git for Windows&nbsp;
+                    a(href="http://msysgit.github.io/", target="_blank") http://msysgit.github.io
+                li
+                    | SourceTree&nbsp;
+                    a(href="http://www.sourcetreeapp.com/", target="_blank") http://www.sourcetreeapp.com
 
 section
     h1 基礎指令
@@ -371,25 +390,6 @@ section
             li 或是把專案分成「dev」、「release」、「test」等功能導向的分支
     //- section
         p 分散式開發 &plus; pull requests
-
-section
-    h1 實機操作
-section
-    h2 安裝 git
-    ul
-        li
-            | Ubuntu:&nbsp;
-            code apt-get install git
-        li OS X: 安裝 Xcode
-        li
-            | Windows:&nbsp;
-            ul
-                li
-                    | Git for Windows&nbsp;
-                    a(href="http://msysgit.github.io/", target="_blank") http://msysgit.github.io
-                li
-                    | SourceTree&nbsp;
-                    a(href="http://www.sourcetreeapp.com/", target="_blank") http://www.sourcetreeapp.com
 
 section
     h1 進階概念與操作
@@ -491,3 +491,6 @@ section
 
 section
     h1 Thank You!
+    p
+        | Presentation source:&nbsp;
+        a(href="https://github.com/teaualune/gittalk", target="_blank") https://github.com/teaualune/gittalk

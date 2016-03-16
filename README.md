@@ -5,3 +5,8 @@ Git Talk 2016
 
 * Run `npm install`
 * Run `node index`
+* Open `localhost:3000` in browser
+
+## License
+
+MIT
