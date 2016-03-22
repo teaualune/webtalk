@@ -10,6 +10,8 @@ html(lang="zh-TW")
     body
         .reveal: .slides
             include slides.jade
-        script
+        script(type="text/javascript")
             include:uglify-js ../node_modules/reveal.js/js/reveal.js
+        script(type="text/javascript", src="plugin/highlight/highlight.js")
+        script(type="text/javascript")
             include:uglify-js ../scripts/index.js

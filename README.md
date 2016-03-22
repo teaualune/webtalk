@@ -1,4 +1,4 @@
-Git Talk 2016 hello!!!!!
+Web Talk 2016
 =============
 
 ## Up and Running

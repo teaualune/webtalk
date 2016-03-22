@@ -8,6 +8,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use('/images', express.static('images'));
+app.use('/plugin', express.static('node_modules/reveal.js/plugin'));
 app.get('/', (req, res) => {
     res.render('index');
 });
