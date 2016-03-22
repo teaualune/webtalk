@@ -2,6 +2,7 @@
     "name": "webtalk",
     "dependencies": {
         "express": "4.13.4",
+        "headjs": "1.0.3",
         "jade": "1.11.0",
         "jstransformer-less": "1.0.0",
         "jstransformer-uglify-js": "1.1.1",

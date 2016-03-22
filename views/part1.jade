@@ -1,0 +1,41 @@
+section
+    h1 網頁運作原理
+    h2 How Web Pages Work
+section
+    section
+        h3 在 how 之前&hellip;
+        h3
+            span(style="color:red;") What
+            |  is a web page?
+    section
+        h3 1. HTML
+    section
+        h3 2. CSS
+    section
+        h3 3. JavaScript
+section
+    h2 使用者如何「使用到」網頁？
+section
+    section
+        h3 使用者觀點&hellip;
+        ol
+            li 在瀏覽器輸入網址
+            li 網頁開始從伺服器載入
+            li 等待轉圈圈停下來（載入完成）
+    section
+        h3 放大來看&hellip;
+        ol
+            li 瀏覽器發出包含 URL 的 HTTP 請求（Request）
+            li 經由網際網路的 DNS 來鎖定 URL 指定的伺服器（Server）位置，也就是 IP
+            li 伺服器回傳對應的 HTTP 回應（Response）
+            li 瀏覽器接收包含 HTML 的 HTTP 回應
+            li 瀏覽器將 HTML 繪製（Render）到頁面上
+    section
+        h3 所以接下來會介紹的名詞包括
+        ol
+            li URL
+            li HTTP Request
+            li HTTP Response
+            li DNS
+            li IP
+        p 然後才是 HTML, CSS 和 JavaScript

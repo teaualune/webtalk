@@ -3,6 +3,7 @@ html(lang="zh-TW")
         title Git Talk 2016
         style
             | <style type="text/css">
+            include:less(compress=true) ../styles/monokai-sublime.css
             include:less(compress=true) ../node_modules/reveal.js/css/reveal.css
             include:less(compress=true) ../node_modules/reveal.js/css/theme/white.css
             include:less(compress=true) ../styles/index.less
@@ -11,7 +12,7 @@ html(lang="zh-TW")
         .reveal: .slides
             include slides.jade
         script(type="text/javascript")
-            include:uglify-js ../node_modules/reveal.js/js/reveal.js
-        script(type="text/javascript", src="plugin/highlight/highlight.js")
+            include ../node_modules/headjs/dist/1.0.0/head.js
+            include ../node_modules/reveal.js/js/reveal.js
         script(type="text/javascript")
             include:uglify-js ../scripts/index.js
