@@ -1,0 +1,190 @@
+section
+    h1 網頁運作原理
+    h2 How Web Pages Work
+section
+    section
+        h3 在 how 之前&hellip;
+        h3
+            span(style="color:red;") What
+            |  is a web page?
+    section
+        h3 1. HTML
+    section
+        h3 2. CSS
+    section
+        h3 3. JavaScript
+section
+    h2 使用者如何「使用到」網頁？
+section
+    section
+        h3 使用者觀點&hellip;
+        ol
+            li 在瀏覽器輸入網址
+            li 網頁開始從伺服器載入
+            li 等待轉圈圈停下來（載入完成）
+    section
+        h3 放大來看&hellip;
+        ol
+            li 瀏覽器發出包含 URL 的 HTTP 請求（Request）
+            li 經由網際網路的 DNS 來鎖定 URL 指定的伺服器（Server）位置，也就是 IP
+            li 伺服器回傳對應的 HTTP 回應（Response）
+            li 瀏覽器接收包含 HTML 的 HTTP 回應
+            li 瀏覽器將 HTML 繪製（Render）到頁面上
+    section
+        h3 所以接下來會介紹的名詞包括
+        ol
+            li URL
+            li IP
+            li DNS
+            li HTTP Request
+            li HTTP Response
+        p 然後才是 HTML, CSS 和 JavaScript
+
+section
+    h3 Universal Resource Locator (URL)
+    section: ul
+        li 就是俗稱的網址
+        li 通常會指向某個伺服器底下的資源
+    section
+        pre
+            span(style="color:red;") https
+            | ://
+            span(style="color:orange;") www.himelight.com
+            span(style="color:green;") /user/teaualune
+            span(style="color:blue;") ?mobile=yes&amp;static
+            span(style="color:purple;") #highlights
+        ul
+            li
+                span(style="color:red;") Protocol
+                | : HTTP 或 HTTPS
+            li
+                span(style="color:orange;") Domain
+                | : www.himelight.com 或 52.74.40.157
+            li Port: 一般都省略，預設為 80 或 443
+            li
+                span(style="color:green;") Path
+                | : 斜線後面的部份，可以想像成伺服器內部的層級結構
+            li
+                span(style="color:blue;") Query
+                | : 問號後面的部份，用 &amp; 銜接很多個
+            li
+                span(style="color:purple;") Fragment
+                | : 井字號後面的部份，表示頁面上的區塊
+section
+    h3 Internet Protocol (IP)
+    ul
+        li 代表網際網路上伺服器的位址（address）
+        li
+            b IPv4
+            | : 由四個數字（0 ~ 255）組成，所以有 2
+            sup 32
+            | 個位址可用
+        li
+            | 樓上已經
+            a(href="https://zh.wikipedia.org/wiki/IPv4位址枯竭", target="_blank") 被全世界用光了
+            | ，因此接下來是使用
+            b  IPv6
+            | ，共有 2
+            sup 128
+            | 個位址可用
+        li
+            | 範例：
+            a(href="52.74.40.157", target="_blank") 52.74.40.157
+section
+    h3 Domain Name System (DNS)
+    ul
+        li 存在於網際網路中的中繼伺服器，用來把 domain 翻譯成 IP
+        li
+            | 簡單的網路攻擊：
+            a(href="http://www.techbang.com/posts/13281-taiwan-anonymous-hack-philippine", target="_blank") 把 DNS 打爆，讓網址連不到實際的伺服器
+section
+    section
+        h3 HyperText Transfer Protocol (HTTP)
+        ul
+            li 目前最常見的網路通訊協定之一，主要用於跨網際網路的資源存取
+            li
+                | 一次 HTTP 連線分成 Request 和 Response 兩個部分
+                ul
+                    li
+                        | 請求方開啟連線，發出&nbsp;
+                        b Request
+                        |  並等待回應
+                    li
+                        | 伺服器收到後回傳&nbsp;
+                        b Response
+                        |  並關閉此次連線
+            li 每個 request/response 由 Header 和 Body 兩部分組成
+    section
+        h3 HTTP Request
+        ul
+            li
+    section
+        h3 HTTP Response
+        ul
+            li
+
+section
+    h2 網頁的三大要素
+    h3: ul
+        li HTML
+        li CSS
+        li JavaScript
+section
+    section
+        h3 HyperText Markup Language (HTML)
+    section
+        h3 Cascading Style Sheets (CSS)
+    section
+        h3 JavaScript
+section
+    section
+        h2 認識 HTML 結構
+        ul
+            li HTML 語法上是 XML 的子類，由多個 tag 組合而成
+            li 基本結構為 html 包著 head 和 body:
+        pre: code
+            | &lt;html&gt;
+            |   &lt;head&gt;
+            |   &lt;/head&gt;
+            |   &lt;body&gt;
+            |   &lt;/body&gt;
+            | &lt;/html&gt;
+    section
+        h3 &lt;head&gt;
+    section
+        h3 &lt;body&gt;
+    section
+        h2 What about CSS &amp; JavaScript?
+        ul
+            li 使用 &lt;style&gt; 撰寫 CSS
+            li 使用 &lt;link&gt; 引入 CSS 檔
+            li 使用 &lt;script&gt; 撰寫/引入 JavaScript
+section
+    section
+        h2 從 HTML &amp; CSS 到實際的網頁樣貌：
+        h2 DOM 簡介
+    section
+        h3 Document Object Model (DOM)
+        ul
+            li 瀏覽器用來呈現 HTML Tag 的物件
+            li 基本上一個 HTML Tag 對應一個 DOM
+            li 每個 DOM 還記錄了由 CSS 所定義出來的樣式，讓瀏覽器知道該怎麼繪製這個 DOM
+            li HTML Tree 和 CSS 生成的 Style Tree 結合，就變成了 DOM Tree
+    section
+        h3 DOM Tree
+        img
+    section
+        h3 瀏覽器繪製網頁的順序
+        ol
+            li 瀏覽器讀取 HTML 文件
+            li 將所有 HTML 的 Tag 組合成 HTML Tree
+            li 碰到 CSS 時，將 CSS 規則解析成 Style Tree
+            li 碰到 JS 時，暫停手邊工作等 JS 程式執行完再繼續
+            li 將 HTML Tree 和 Style Tree 組合成 DOM Tree
+            li 將 DOM Tree 繪製到視窗內
+    section
+        h3 CSS at Top, JS at Bottom
+        ul
+            li 由於瀏覽器一碰到 JS 就會暫停手邊的 DOM 生成，此時畫面看起來會卡住
+            li 為了避免使用者不耐煩，建議把繁雜的 JS 放到 &lt;body&gt; 最下方
+            li 把 CSS 擺在最上面，能加快 DOM Tree 也就是實際畫面的生成，增加可使用性

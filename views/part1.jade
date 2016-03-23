@@ -1,41 +1,56 @@
+include ./part1-1.jade
+
 section
-    h1 網頁運作原理
-    h2 How Web Pages Work
+    h1 網頁的 Debug 工具
+    ul
+        li HTML Validators
+        li JSBin, Codepen, JSFiddle
+        li 網頁檢測器
 section
-    section
-        h3 在 how 之前&hellip;
-        h3
-            span(style="color:red;") What
-            |  is a web page?
-    section
-        h3 1. HTML
-    section
-        h3 2. CSS
-    section
-        h3 3. JavaScript
+    h2 HTML Validation
+    ul
+        li 雖然 HTML 結構的容錯度高，但仍有一定的寫作規範
+        li 使用線上的驗證工具檢查 HTML 有沒有寫好
+        li: a(href="https://validator.w3.org", target="_blank") https://validator.w3.org
 section
-    h2 使用者如何「使用到」網頁？
+    h2 線上平台（Playground）
+    ul
+        li 方便測試 HTML、CSS、JS 效果的線上編輯器
+        li 適合用來分享、和他人討論
+        li: a(href="https://jsbin.com") JSBin
+        li: a(href="https://jsfiddle.net") JSFiddle
+        li
+            a(href="http://codepen.io") Codepen
+            |  （較適合測試CSS效果）
+        li: a(href="http://voidcanvas.com/jsbin-jsfiddle-or-codepen-which-one-to-use-and-why/") 三者比較
 section
+    h2 Web Inspectors 網頁檢測器
+    ul
+        li 網頁開發最重要的 debug 工具
+        li 觀察 HTML 實際的樣式、對 CSS 和 JS 偵錯、檢查網路連線和 Cookie 等
+        li: del 惡搞別人的網站
+section
+    section: h3 各家瀏覽器的檢測器介紹
     section
-        h3 使用者觀點&hellip;
-        ol
-            li 在瀏覽器輸入網址
-            li 網頁開始從伺服器載入
-            li 等待轉圈圈停下來（載入完成）
+        h3 Chrome
+        h1 TODO
     section
-        h3 放大來看&hellip;
-        ol
-            li 瀏覽器發出包含 URL 的 HTTP 請求（Request）
-            li 經由網際網路的 DNS 來鎖定 URL 指定的伺服器（Server）位置，也就是 IP
-            li 伺服器回傳對應的 HTTP 回應（Response）
-            li 瀏覽器接收包含 HTML 的 HTTP 回應
-            li 瀏覽器將 HTML 繪製（Render）到頁面上
+        h3 Safari
+        h1 TODO
     section
-        h3 所以接下來會介紹的名詞包括
-        ol
-            li URL
-            li HTTP Request
-            li HTTP Response
-            li DNS
-            li IP
-        p 然後才是 HTML, CSS 和 JavaScript
+        h3 Opera
+        img
+        p 其實是 Chrome 和 Safari 檢測器的原型
+    section
+        h3 Firefox
+        p 內建的不好用，請愛用 Firebug
+section
+    h4 檢測器基本功能介紹
+    section
+        h4 DOM 檢測
+    section
+        h4 網路流量監測
+    section
+        h4 載入文件一覽
+    section
+        h4 網頁主控台
