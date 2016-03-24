@@ -8,5 +8,7 @@ Reveal.initialize({
                 hljs.initHighlightingOnLoad();
             }
         }
-    ]
+    ],
+    history: true,
+    slideNumber: true
 });
