@@ -6,45 +6,310 @@ section
             li block 與 inline
             li Normal Flow
             li relative 與 absolute
-            li float 與 clear
         td: ul
-            li Pseudo Element
+            li float 與 clear
             li stacking context 與 z-index
             li grid 系統
             li flexbox
 section
-    h2 DOM 的視覺呈現：Box Model
+    section
+        h2 DOM 的視覺呈現：Box Model
+        div(style="float:left;width:50%;")
+            img(src="images/Boxmodell-detail.png")
+            br
+            small: a(href="https://en.wikipedia.org/wiki/CSS_box_model", target="_blank") Reference
+        div(style="float:left;width:50%;")
+            p 每個 DOM 從內到外分成四層：
+            ul
+                li Content
+                li Border
+                li Padding
+                li Margin
+    section
+        h3 Content
+        ul
+            li 文字、圖片等內容的所在區域
+            li 寬高由 width 和 height 屬性決定
+    section
+        h3 Padding
+        ul
+            li Content 外部的區域
+            li
+                | 元素的
+                span.color-red 實際可見區域
+                | 會延展到 padding 和 border 範圍
+                ul
+                    li 例如 background、overflow 等屬性的作用範圍都在 padding 和 border 之內
+            li 一般用來作為 content 外部的留白區域，讓元素彼此之間看起來較有空隙
+    section
+        h3 Border
+        ul
+            li Padding 外部的框線區域
+            li 可以用 solid、dashed、double 等值設定框線樣式（如同 Word 那樣）
+            li 上右下左四邊可以獨立設定各自的寬度、顏色、背景圖（CSS3 only）
+            li
+                | 四邊的分界是以斜線切開，因此可以做出這種
+                a(href="https://css-tricks.com/snippets/css/css-triangle", target="_blank") 三角形效果
+    section
+        h3 Margin
+        ul
+            li Border 的外部區域
+            li Margin 區域和其他元素的可見區域不可重疊，因此可用來把其他元素「擠開」
+            li
+                | 但
+                b 不同元素的 margin 範圍會重疊
+                | ，使用概念和 padding 有所差異
+    section
+        h3 Box Sizing
+        ul
+            li
+                | 由於元素的 width 和 height&nbsp;
+                span.color-red 不包含 padding 和 border 的區域
+                | ，計算上很不直覺
+            li
+                | 新的規則&nbsp;
+                code box-sizing: border-box;
+                |  解決此問題，讓計算反過來
+            li 舊的計算方式稱為 content-box
+    section
+        div(style="float:left;")
+            img(src="images/W3C_and_Internet_Explorer_box_models.svg.png", height=600)
+            br
+            small: a(href="https://en.wikipedia.org/wiki/Internet_Explorer_box_model_bug", target="_blank") Reference
+        ul(style="width:50%;")
+            li 由於舊版 IE 誤將 box model 做成 border box 的形式，因此 border box 又被稱為 IE box model
+            li 大家發現 border box 比較好用後，才要求 W3C 將其列為標準
+            li Bootstrap 等套件預設將所有元素全部設定為 border box
 section
-    h2 Block-level &amp; Inline-level
+    section
+        h2 Block-level &amp; Inline-level
+        p 所有的 DOM 都遵循著兩者之一的排版模式：block 和 inline
+        ul
+            li
+                | Block-level: 可用 CSS 手動定義寬度和高度，且
+                b 不論多寬都會把下一個元素擠到下一行
+            li Inline-level: 元素的寬高由 content 內容撐出來，不能自行定義
+    section
+        h3 Block Elements
+        ul
+            li Block 元素會將彼此擠開成為不同行（line）的區塊
+            li 可以用 CSS 的 display: block; 手動將元素定義成 block-level
+            li display: table; 的元素也屬於 block-level 模式
+            li
+                | 本身就屬於 block-level 的元素（節錄）：
+                ul
+                    li div （division，萬用的 block-level 元素，不具有語意）
+                    li h1, h2, ... h3 （heading，作為標題之用）
+                    li p （paragraph，作為內文之用）
+                    li ul （unordered list，和 li 搭配作為列點）
+                    li ol （ordered list，和 li 搭配作為數字列點）
+    section
+        h3 Inline Elements
+        ul
+            li Inline 元素就像一般的文字，依照文字排列順序往下排
+            li 可以用 CSS 的 display: inline; 手動將元素定義成 inline-level
+            li
+                | 本身就屬於 inline-level 的元素（節錄）：
+                ul
+                    li span （萬用的 inline-level 元素，不具有語意）
+                    li b （bold，粗體）
+                    li i （italic，斜體）
+                    li img （image，圖片）
+                    li input （表單的單行輸入區塊）
+    section
+        h3 Inline Block
+        ul
+            li 用 CSS 的 display: inline-block; 定義而成的特殊模式，兼具 inline 和 block 的部份性質
+            li
+                | 以排版而言，遵循&nbsp;
+                b inline-level
+                |  的排版模式
+            li
+                | 但可以像 display: block; 的元素一樣，
+                b 自行定義寬高和 margin
 section
-    h2 網頁的排版原則：Normal Flow
+    section
+        h2 網頁的排版原則：Normal Flow
+        ul
+            li
+                | 網頁的元素排列由左到右、由上往下（一般的情況，
+                a(href="https://en.wikipedia.org/wiki/Right-to-left", target="_blank") RTL
+                |  語系除外）
+            li Inline-level 元素和一般文字遵循著此方向依序緊密排列
+            li Block-level 元素自成一排，將下一個元素擠倒下一行去
+            li Float 元素被提取到浮動位置，其他元素繼續沿著 normal flow 排版並避開 float 元素（避免重疊）
+            li Relative 元素維持原位並依照 CSS 規則位移
+            li
+                | Absolute 元素會被
+                b 從 normal flow 剝離
+                | ，並移動到 CSS 規則定義的位置
+            li Fixed 元素和 absolute 類似，但會停留在瀏覽器的相對位置
+    section
+        h3 和其他軟體有什麼差異？
+        ul
+            li Word、Pages 文書處理軟體：基本排版概念幾乎一樣，可以用這些軟體做 normal flow 的想像與類比
+            li AI、PS 排版和影像處理軟體：網頁並非以座標定位所有元素，因此時常無法做到和 AI 排版出來的相同效果
+            li
+                | 由於 inline 元素不容易掌握高度，因此儘量避免讓設計師
+                b 使用太多固定高度的設計
+            li
+                | HTML 的排版思維應儘量以
+                span.color-red 讓元素本身排列出各自的高度和 Y 軸位置
+                | 為主
 section
     section
         h3: code position: relative;
+        ul
+            li
+                | 維持元素的 normal flow 位置，但可以
+                span(style="position:relative;top:15px;") 微調位移
+            li 使用 top、left、right、bottom 設定
+        p: small position: relative; top: 15px;
     section
         h3: code position: absolute;
+        ul
+            li
+                | 將元素從 normal flow 剝離，
+                span(style="position:absolute;left:-100px;bottom:-30px;") 並使用
+                | top、left、right、bottom 設定
+            li absolute 元素的排版模式自動變為 block-level
+            li 可以用 left = 0 和 right = 0 的概念把元素寬度拉滿
+        p: small position: absolute; left: -100px; bottom: -30px;
     section
         h3 混用技巧
+        ul
+            li 外層 relative &plus; 內層 absolute 可以讓 absolute 元素的相對位置從 relative 開始
+            li 常用技巧之一，適合精確調控位置時使用
 section
     section
         h3: code float: left;
+        h1(style="float:left;") Float
+        p  的元素會被抽取到旁邊，但仍算是在 normal flow 內；剩餘的排版會圍繞著 float 元素繼續往 normal flow 的方向排列
     section
         h3: code clear: left;
+        h1(style="float:left;") Float
+        p(style="clear:left;")  的下一個元素加上 clear 後，就會重新從下一行重新開始排列
     section
         h3 Float 的問題
+        pre: code
+            | &lt;div&gt;
+            |   &lt;div style="float:left;width:20%;background:red;"&gt;float 1&lt;/div&gt;
+            |   &lt;div style="float:left;width:20%;background:blue;"&gt;float 2&lt;/div&gt;
+            | &lt;/div&gt;
+            | &lt;p style="background:yellow;"&gt;next element&lt;/p&gt;
+        div
+            div(style="float:left;width:20%;background:red;") float 1
+            div(style="float:left;width:20%;background:blue;") float 2
+        p(style="background:yellow;") next element
+        ul: li 為什麼 next element 會跑上來？
     section
         h3 Clearfix
-section
-    h2 Pseudo Element
+        pre: code
+            | &lt;div class="clearfix"&gt;
+            |   &lt;div style="float:left;width:20%;background:red;"&gt;float 1&lt;/div&gt;
+            |   &lt;div style="float:left;width:20%;background:blue;"&gt;float 2&lt;/div&gt;
+            | &lt;/div&gt;
+            | &lt;p style="background:yellow;"&gt;next element&lt;/p&gt;
+        div.clearfix
+            div(style="float:left;width:20%;background:red;") float 1
+            div(style="float:left;width:20%;background:blue;") float 2
+        p(style="background:yellow;") next element
+        ul: li
+            | Clearfix 有很多種實作方法，也有很多
+            a(href="http://getbootstrap.com/css/#helper-classes-clearfix", target="_blank") 套件
+            | 已經寫好了
 section
     section
         h3 Stacking Context
+        ul
+            li 由於 normal flow 的特性，HTML 先天上不容易處理元素重疊的狀況
+            li 瀏覽器使用 stacking context 處理元素重疊的上下關係
+            li 在同一個 stacking context 內可以使用 CSS 的 z-index 定義上下關係
+            li: a(href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context", target="_blank") Reference
     section
-        h3 z-index
+        h3 元素的上下排列規則（簡略版）
+        ol
+            li position: static（預設值）在最下層
+            li
+                | position 不是 static 時，用 z-index 分上下，數值小的在下層
+                ul: li: small 也就是說，position: static 設定 z-index 是無效的
+            li
+                | 當 z-index 相同（不寫預設為零）時，從下到上依序為：
+                ol
+                    li normal flow 的 block-level 元素
+                    li float 元素
+                    li inline-level 元素
+                    li position 不是 static 的元素
+            li 其他情況則以 HTML 內元素的先後順序決定，後寫的在上層
+
 section
-    h2 網頁的 grid 系統
+    section
+        h2 網頁的 grid 系統
+        ul
+            li 一種極常用的 design pattern，用來做橫向 block-level 的頁面排版
+            li 常見的實作方式有 float-based 和 inline-block 兩種
+            li
+                | 原理為使用 block-level 的&nbsp;
+                b container
+                |  包覆 inline-level 的&nbsp;
+                b items
+            li
+                | 如果用過 Bootstrap，通常都用過
+                a(href="http://getbootstrap.com/css/#grid", target="_blank") Bootstrap 的 grid 系統
+            li: a(href="http://purecss.io/grids", target="_blank") Pure.css 的 grid 系統
+    section
+        h3 用 inline-block 實作的問題
+        pre: code
+            | &lt;div&gt;
+            |   &lt;div style="display:inline-block;width:50%;"&gt;
+            |   &lt;/div&gt;
+            |   &lt;div style="display:inline-block;width:50%;"&gt;
+            |   &lt;/div&gt;
+            | &lt;/div&gt;
+    section
+        h3 解法
+        pre: code
+            | &lt;div&gt;
+            |   &lt;div style="display:inline-block;width:50%;"&gt;
+            |   &lt;/div&gt;&lt;!--
+            |   --&gt;&lt;div style="display:inline-block;width:50%;"&gt;
+            |   &lt;/div&gt;
+            | &lt;/div&gt;
+        p 或是整份 HTML 文件壓縮（minify）起來
 section
     h2 CSS3 排版新招：flexbox
+    ul
+        li 為了滿足日漸複雜的排版需求，比 grid 更強、更彈性的原生 CSS grid 系統
+        li container 使用 display: flex; 來製作 flexbox（注意 container 本身以 block-level 模式排版）
+        li: a(href="https://css-tricks.com/snippets/css/a-guide-to-flexbox", target="_blank") 最完整的 flexbox 參考資料
+        li: a(href="http://growpanion.com") Flexbox 能，舊款 grid 系統不能做到的範例
+        li: a(href="http://caniuse.com/#feat=flexbox", target="_blank") IE 以外的瀏覽器請放心使用
+section
+    h2 簡單的 grid 系統比較
+    table
+        thead: tr
+            th 套件
+            th 實作方式
+            th 特色
+        tbody
+            tr
+                td Bootstrap
+                td clearfix container + float items
+                td: ul
+                    li 分母以 12 為基底
+                    li 已經幫忙設定好 item 之間的 padding
+            tr
+                td Pure.css
+                td Flexbox，舊版瀏覽器向下兼容 inline-block 實作方式
+                td: ul
+                    li 有很多種分子、分母搭配的數字可直接使用
+                    li 同時實作了兩個版本
+            tr
+                td CSS3 Flexbox
+                td Flexbox
+                td: ul
+                    li 高彈性
+                    li 已支援大多數瀏覽器
 
 include ./part2-2.jade
 
