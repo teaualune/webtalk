@@ -349,13 +349,13 @@ section
                     li 例如 h1 ~ h6 全部取消粗體、字體大小變回一般、body 的 margin 歸零等等
             li 方便從頭開始刻劃 CSS
     section
-        h2 CSS Normalization
+        h3 CSS Normalization
         ul
             li 和 Reset 類似，但維持各元素的特色（例如 h1 仍為粗體大標）
             li 比 Reset CSS 更有效率的從頭刻劃
             li 各大 CSS 套件均有內建
     section
-        h2 CSS 擺放順序
+        h3 CSS 擺放順序
         div(sytle="float:left;width:50%;"): pre: code
             | &lt;!--1--&gt;&lt;link rel="stylesheet" link="reset.css" /&gt;
             | &lt;!--1--&gt;&lt;link rel="stylesheet" link="normalize.css" /&gt;
@@ -369,6 +369,8 @@ section
                     li 有些 CSS 套件之間有相依性，記得順序會影響最後呈現結果
                     li 例如 Bootstrap theme 的 CSS 一定相依於 Bootstrap 的 CSS，因此得放到後面
             li 自己撰寫的 CSS 檔案，奠基於前面使用到的套件進行覆蓋
+section
+    h2 使用 CSS 套件
 
 section
     h1 Responsive Web Design (RWD) 淺談
