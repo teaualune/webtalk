@@ -318,10 +318,57 @@ section
     ul
         li 排版思維
         li Reset &amp; Normalize
-        li 使用 grid 系統
-        li 垂直置中
-        li relative &plus; absolute
-        li 範例探討
+        li 使用 CSS 套件
+        //- li 垂直置中
+        //- li 範例探討
+section
+    section
+        h3 從設計稿到網頁：排版
+        ul
+            li 構築出網頁整體的 HTML 結構
+            li 觀察網頁上元素的可重複利用性（reusability）以打造元件化的網頁
+            li 替不同的視窗比例預先設想，替 RWD 鋪路
+    section
+        h3 設計排版時的思考方向
+        ol
+            li
+                | 配合 HTML 的 normal flow 特性去思考元件的
+                b 堆疊
+                | 方式，而非在一個大區域內去做座標定位
+            li 觀察哪些區塊之間是同一層級、哪些是巢狀關係
+            li 直式區塊用 block-level 元素排列，橫式區塊用 grid 系統
+section
+    section
+        h2 CSS Reset
+        ul
+            li 每個瀏覽器有各自預設的樣式設定，例如 line-height、margin 都不盡相同
+            li
+                | Reset CSS 針對所有元素給予最基本樣式規則，讓 CSS 在所有瀏覽器拉回同一出發點
+                ul
+                    li 把所有元素的預設 margin、字體大小、粗細全部消除
+                    li 例如 h1 ~ h6 全部取消粗體、字體大小變回一般、body 的 margin 歸零等等
+            li 方便從頭開始刻劃 CSS
+    section
+        h2 CSS Normalization
+        ul
+            li 和 Reset 類似，但維持各元素的特色（例如 h1 仍為粗體大標）
+            li 比 Reset CSS 更有效率的從頭刻劃
+            li 各大 CSS 套件均有內建
+    section
+        h2 CSS 擺放順序
+        div(sytle="float:left;width:50%;"): pre: code
+            &lt;!--1--&gt;&lt;link rel="stylesheet" link="reset.css" /&gt;
+            &lt;!--1--&gt;&lt;link rel="stylesheet" link="normalize.css" /&gt;
+            &lt;!--2--&gt;&lt;link rel="stylesheet" link="css_libraries.css" /&gt;
+            &lt;!--3--&gt;&lt;link rel="stylesheet" link="app.css" /&gt;
+        div(sytle="float:left;width:50%;"): ol
+            li Reset 或 Normalize CSS（通常使用 normalize）
+            li
+                | CSS 套件的檔案，擺放使用到的 CSS 套件於此
+                ul
+                    li 有些 CSS 套件之間有相依性，記得順序會影響最後呈現結果
+                    li 例如 Bootstrap theme 的 CSS 一定相依於 Bootstrap 的 CSS，因此得放到後面
+            li 自己撰寫的 CSS 檔案，奠基於前面使用到的套件進行覆蓋
 
 section
     h1 Responsive Web Design (RWD) 淺談
