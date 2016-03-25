@@ -8,11 +8,46 @@ section
             span.color-red What
             |  is a web page?
     section
+        p 現代的網頁大致是以三種語言寫成：
+        ol
+            li HTML
+            li CSS
+            li JavaScript
+    section
         h3 1. HTML
+        pre: code
+            | &lt;p&gt;
+            |   The current time is &lt;b&gt;13:00&lt;/b&gt;!
+            | &lt;/p&gt;
+        img(src="images/1-1-html.png")
     section
         h3 2. CSS
+        pre: code
+            | b {
+            |   font-size: 150%;
+            |   color: red;
+            |   vertical-align: middle;
+            | }
+        img(src="images/1-1-css.png")
     section
         h3 3. JavaScript
+        pre: code
+            | &lt;p&gt;
+            |   The current time is &lt;b id="time"&gt;&lt;/b&gt;!
+            | &lt;/p&gt;
+        pre: code
+            | var time = document.getElementById('time');
+            | function setTime () {
+            |   var now = new Date();
+            |   var hour = now.getHours();
+            |   var minute = now.getMinutes();
+            |   hour = (hour &lt; 10 ? '0' : '') + hour;
+            |   minute = (minute &lt; 10 ? '0' : '') + minute;
+            |   time.innerText = hour + ':' + minute;
+            | }
+            | setInterval(setTime, 60000);
+            | setTime();
+        img(src="images/1-1-js.png")
 section
     h2 使用者如何「使用」網頁？
 section
@@ -113,15 +148,73 @@ section
                         | 伺服器收到後回傳&nbsp;
                         b Response
                         |  並關閉此次連線
-            li 每個 request/response 由 Header 和 Body 兩部分組成
+            li
+                | 每個 request/response 由 Header 和 Body 兩部分組成：
+                ul
+                    li Header 擺放想告訴 server / server 回傳的資訊（metadata）
+                    li Body 擺放要傳送給 server / server 回傳的資料
     section
         h3 HTTP Request
         ul
             li
+                | 有 GET, POST, PUT, DELETE, OPTIONS 等不同的
+                b 請求類型
+            li 只有 POST 和 PUT 有 request body，其他類型只有 header
+            li 傳統上以 GET 向 server 要求資源、用 POST 向 server 發出表單
     section
-        h3 HTTP Response
+        h3 Request Header 會送出的資訊
+        ul
+            li Cookie: 存在瀏覽器內，對應此網頁的靜態資料。通常用來作登入機制
+            li
+                | User-Agent: 告訴 server 自己是誰（什麼瀏覽器、什麼 OS、版本號 etc）
+                ul
+                    li Server 可用來辨識瀏覽器類型
+                    li: a(href="https://chrome.google.com/webstore/detail/user-agent-switcher-for-c/djflhoibgkdhkhhcedjiklpkjnoahfmg", target="_blank") 可假造，方便 debug
+                    li 不良的瀏覽器可能會亂給
+            li
+                | Referer: 本次 request 是受誰介紹而來
+                ul
+                    li 例：從 Google 搜尋點開連結，referer 會是 Google
+                    li: a(href="http://picsee.co", target="_blank") 可用來判斷 request 來源以做出不同回應
+    section
+        h3 Response Header 會附帶的資訊
+        ul
+            li Status code: 以代碼表示本次連線結果，數值從 200 到 500 以上各句意義
+            li
+                | Content-Type: response body 的類型
+                ul
+                    li 可以是 text/html、image/png 等
+                    li 瀏覽器會依據此資訊來對 body 做處理，例如若收到 image/png 便將內容視為圖片
+            li Set-Cookie: 要設定到瀏覽器 cookie 的資訊
+            li Server: server 資訊
+            li Cache-Control: 告訴瀏覽器是否要將此頁面緩存起來
+    section
+        h3 常見的 Status Code
         ul
             li
+                b 2xx
+                | : 代表成功
+                ul
+                    li 200: OK
+                    li 204: No Content（成功，不過 response body 是空的）
+            li
+                b 3xx
+                | : 代表重新導向（redirect）
+            li
+                b 4xx
+                | : 代表用戶出錯
+                ul
+                    li 401: Unauthorized（權限不夠存取此資源）
+                    li 403: Forbidden（用戶不能存取此資源）
+                    li 404: Not Found
+                    li 413: Request Entity Too Large（request body 太大，例如上傳圖片超過規定大小）
+                    li 418: I'm a Teapot
+            li
+                b 5xx
+                | : 代表 server 出錯
+                ul
+                    li 501: Internal Server Error（反正 server 出問題就對了）
+                    li 503: Service Unavailable（server 目前斷線中）
 
 section
     h1 網頁的三大要素
@@ -132,10 +225,27 @@ section
 section
     section
         h3 HyperText Markup Language (HTML)
+        ul
+            li 由許多的標籤（tag，或稱元素）聚合而成，標籤的寫法是 &lt;TAG&gt;...&lt;/TAG&gt;
+            li HTML 提供了不同功能的標籤用以組合成實際看到的網頁
+            li 可以看成網頁的骨架
     section
         h3 Cascading Style Sheets (CSS)
+        ul
+            li 一套用來描述網頁外觀的語法
+            li
+                | 每個敘述分成
+                span.color-red 選擇器（selector）
+                | 和
+                span.color-red 規則（rule）
+                | 兩部分
+            li 瀏覽器使用 selector 選擇出 HTML 上符合的元素，並將規則套用至這些元素上
     section
         h3 JavaScript
+        ul
+            li 網頁上真正可運作的程式語言（programming language）
+            li 一開始被用來操作網頁元素達到互動效果，後來發展的越來越複雜
+            li 現在是最熱門的程式語言之一，除了網頁也可藉由 Node.js 用來開發 server
 section
     section
         h2 認識 HTML 結構
@@ -151,14 +261,34 @@ section
             | &lt;/html&gt;
     section
         h3 &lt;head&gt;
+        ul
+            li &lt;head&gt; 內部的元素不會呈現於畫面，而是用於輔助網頁
+            li &lt;title&gt; 為網頁的標題
+            li
+                | &lt;meta&gt; 用來描述網頁的許多屬性，例如作者、網頁內容描述等
+                ul
+                    li 由於搜尋引擎會讀取 &lt;meta&gt; 作為依據，此處對 Search Engine Optimization (SEO) 很重要
     section
         h3 &lt;body&gt;
+        ul
+            li 瀏覽器會將整個 &lt;body&gt; 區塊的內容呈現於畫面上
+            li 一個網頁對應一個 &lt;body&gt;，但 &lt;body&gt; 可以用 &lt;iframe&gt; 的形式變成巢狀，也就是嵌入網頁
     section
         h2 What about CSS &amp; JavaScript?
         ul
             li 使用 &lt;style&gt; 撰寫 CSS
             li 使用 &lt;link&gt; 引入 CSS 檔
             li 使用 &lt;script&gt; 撰寫/引入 JavaScript
+    section
+        pre: code
+            | &lt;html&gt;
+            |   &lt;head&gt;
+            |     &lt;link rel="stylesheet" href="styles.css" /&gt;
+            |   &lt;/head&gt;
+            |   &lt;body&gt;
+            |    &lt;script type="text/javascript" src="app.js"&gt;&lt;/script&gt;
+            |   &lt;/body&gt;
+            | &lt;/html&gt;
 section
     section
         h2 從 HTML &amp; CSS 到實際的網頁樣貌：
@@ -172,7 +302,7 @@ section
             li HTML Tree 和 CSS 生成的 Style Tree 結合，就變成了 DOM Tree
     section
         h3 DOM Tree
-        img
+        img(src="images/2000px-DOM-model.svg.png", width=400)
     section
         h3 瀏覽器繪製網頁的順序
         ol
