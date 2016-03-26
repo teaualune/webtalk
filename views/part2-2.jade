@@ -131,7 +131,7 @@ section
             | }
     section
         p 數個數
-        table(style="font-size:75%;")
+        table(style="font-size:50%;")
             thead: tr
                 th
                 th Inline style
@@ -141,7 +141,7 @@ section
             tbody
                 tr
                     td 範例
-                    td: pre: code &lt;a style="color:#f00;"&gt;
+                    td(style="width:12em;"): pre: code &lt;a style="color:#f00;"&gt;
                     td
                         code #header
                         | ,&nbsp;
@@ -192,7 +192,7 @@ section
             li 解決方案
     section
         h3 Vendor Prefix
-        ul
+        ul(style="font-size:90%;")
             //- li 由於各家瀏覽器對 W3C 標準的實作差異，同一份 CSS 的呈現結果會不太一樣
             li
                 | 新的 HTML5 規格未定前（2014.10 以前），各家瀏覽器只支援各自的 CSS 規則：
@@ -238,32 +238,30 @@ section
     section
         p 撰寫 selector 時，考慮頁面架構來設計 selector
         p Bad example:
-        table(style="border:0;"): tbody: tr
-            td: pre: code.html
-                | &lt;article class="item"&gt;
-                |   &lt;header class="item-header"&gt;
-                |     &lt;h1 class="item-title"&gt;人氣商品特價拍賣中&lt;/h1&gt;
-                |   &lt;/header&gt;
-                | &lt;/article&gt;
-            td: pre: code
-                | .item .item-header .item-title {
-                |   color: #343435;
-                |   margin-top: 25px;
-                | }
+        div(style="float:left;width:50%;"): pre: code.html
+            | &lt;article class="item"&gt;
+            |   &lt;header class="item-header"&gt;
+            |     &lt;h1 class="item-title"&gt;人氣商品特價拍賣中&lt;/h1&gt;
+            |   &lt;/header&gt;
+            | &lt;/article&gt;
+        div(style="float:left;width:50%;"): pre: code
+            | .item .item-header .item-title {
+            |   color: #343435;
+            |   margin-top: 25px;
+            | }
     section
         p Good example:
-        table(style="border:0;"): tbody: tr
-            td: pre: code
-                | &lt;article class="item"&gt;
-                |   &lt;header&gt;
-                |     &lt;h1&gt;人氣商品特價拍賣中&lt;/h1&gt;
-                |   &lt;/header&gt;
-                | &lt;/article&gt;
-            td: pre: code
-                | .item h1 {
-                |   color: #343435;
-                |   margin-top: 25px;
-                | }
+        div(style="float:left;width:50%;"): pre: code
+            | &lt;article class="item"&gt;
+            |   &lt;header&gt;
+            |     &lt;h1&gt;人氣商品特價拍賣中&lt;/h1&gt;
+            |   &lt;/header&gt;
+            | &lt;/article&gt;
+        div(style="float:left;width:50%;"): pre: code
+            | .item h1 {
+            |   color: #343435;
+            |   margin-top: 25px;
+            | }
         ul
             li
                 code .item h1
@@ -274,7 +272,7 @@ section
                 |  裡面的大標題，因此不需要多餘的 class 作為輔助
     section
         p 避免太複雜的疊床架屋
-        ul
+        ul(style="font-size:90%;")
             li 當 selector 內出現四個或以上數量的元素時，就該考慮進行重構（refactor）
             li 避免使用 inline style，因為他們難以追蹤又無法覆蓋
             li
@@ -319,11 +317,9 @@ section
         h3 Example (LESS.js)
         p 搭配 lesshat 同時做到跨平台
         table
-            thead: tr
-                th LESS
-                th CSS
-            tbody: tr
-                td: pre: code
+            div(style="float:left;width:50%;")
+                | LESS
+                pre: code
                     | @import "lesshat.less";
                     | &nbsp;
                     | @active-color: #337ab7;
@@ -338,7 +334,9 @@ section
                     |     background-color: fadeout(@active-color, 50%);
                     |   }
                     | }
-                td: pre: code
+            div(style="float:left;width:50%;")
+                | CSS
+                pre: code
                     | a {
                     |   color: black;
                     |   background: transparent;
