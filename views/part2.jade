@@ -370,12 +370,110 @@ section
                     li 例如 Bootstrap theme 的 CSS 一定相依於 Bootstrap 的 CSS，因此得放到後面
             li 自己撰寫的 CSS 檔案，奠基於前面使用到的套件進行覆蓋
 section
-    h2 使用 CSS 套件
-
+    section
+        h2 使用 CSS 套件
+        ul
+            li Don't reinvent the wheels
+            li 只需要撰寫相對應結構的 HTML、套 class 就能直接達到效果
+            li 用元件（component）的想法堆疊網頁
+    section
+        h3 常見的既有元件: Menu
+        ul
+            li 通常以 grid 系統構造出橫向 menu
+            li: a(href="http://getbootstrap.com/components/#nav", target="_blank") Bootstrap Navigation
+            li: a(href="http://purecss.io/menus", target="_blank") Pure.CSS Menus
+    section
+        h3 按鈕 Button
+        ul
+            li 以 class 為主結構，藉此統一 &lt;a&gt;、&lt;button&gt;、&lt;input type="submit" /&gt; 等元件的外觀
+            li: a(href="http://getbootstrap.com/css/#buttons", target="_blank") Bootstrap Buttons
+            li: a(href="http://purecss.io/buttons", target="_blank") Pure.CSS Buttons
+    section
+        h3 其他常見的元件
+        ul
+            li 表單 Form
+            li 表格 Table
+            li 進度條 Progress Bar
+        p 同樣只要撰寫結構正確的 HTML，自己只需要寫額外一點點客製化的 CSS（例如客製顏色）
+    section
+        h3 Icon 類
+        ul
+            li
+                a(href="https://fortawesome.github.io/Font-Awesome", target="_blank") Font Awesome
+                | : 用 SVG 字體檔製作 icon 的 CSS 套件
+            li
+                | 或是使用&nbsp;
+                a(href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Implementing_image_sprites_in_CSS", target="_blank") sprite sheet
+                |  的概念製作 icon（
+                a(href="https://www.himelight.com/modules/core/images/hm-assets.png", target="_blank") 範例
+                | ）
+    section
+        h3 需要和 JavaScript 搭配的元件
+        ul
+            li 由於具有互動性，因此只靠 HTML &amp; CSS 不夠
+            li 搭配 jQuery、jQuery plugin 等 JS library 仍然能以最少的客製 JS 程式碼達成效果
+            li
+                | 常見的互動式元件：
+                ul
+                    li 跳出式視窗（Alert 或 Modal）
+                    li 分頁（Tab）
+                    li 下拉式選單（Dropdown）
+                    li 摺疊型選單（Hamburger menu）
+                    li 跑馬燈（Carousel）
+                    li 表單驗證機制（Form validation）
 section
     h1 Responsive Web Design (RWD) 淺談
     ul
         li Mobile First
-        li Viewport
-        li vw &amp; vh
+        li Media Query and Breakpoint
+        //- li vw &amp; vh
         li RWD 的排版概念
+section
+    h3 Mobile First
+    section: ul
+        li 2010 年代開始出現的網頁設計概念之一
+        li 意如其名，設計師在規劃網頁時先從手機版網頁（mobile web）開始設計、再逐步放大到電腦版
+        li 同時還具有「優先思考開發 mobile app」的概念
+    section
+        p 使用 mobile first 概念設計的好處：
+        ul
+            li 從簡單到複雜
+            li 一個網頁同時套用至不同尺寸的裝置，不需要額外寫另一個網頁
+            li: a(href="https://www.google.com/webmasters/tools/mobile-friendly", target="_blank") SEO Friendly
+            li 容易達成 RWD 的目標：one web for multiple screens
+section
+    section
+        h3 Media Query
+        pre: code
+            | .col-md-9 {
+            |   width: 100%;
+            | }
+            | @media (min-width: 992px) .col-md-9 {
+            |   width: 75%;
+            | }
+        ul
+            li CSS 用來偵測瀏覽器大小、以套用不同 CSS 規則的一個機制
+            li 以上面範例而言，當瀏覽器寬度超過 992px 時，.col-md-9 的寬度會變為 75%
+    section
+        h4 Breakpoints
+        p 以 Bootstrap 為例：
+        pre: code
+            | @media (max-width: 767px) // 手機版
+            | @media (min-width: 768px) // 平板電腦
+            | @media (min-width: 992px) // 一般電腦螢幕
+            | @media (min-width: 1200px) // 寬螢幕
+        p 利用 CSS 覆蓋的特性，達到程式概念上的 mobile first
+section
+    h3 RWD 的排版概念
+    p 考慮「手機」和「電腦」的特性、使用習慣等差異進行思考
+    ul
+        li
+            | 使用手機習慣一直往下滑 &xrarr; 將網頁內容垂直往下堆疊；電腦版則允許左右擺放
+            ul
+                li 現在的 grid 系統幾乎都內建 responsive 特性，不需要自己寫
+        li
+            | 手機能夠一次呈現的內容較少 &xrarr; 用 hamburger&nbsp;
+            img(src="images/hamburger.png")
+            |  把 menu 藏起來，Bootstrap 愛用招
+        li 手機的網路頻寬有限 &xrarr; 手機上的 &lt;img&gt; 或 background image 改用解析度較小的圖片檔
+        li 如果之前排版時一直用 AI、PS 的座標系思考，會相當難以實現 RWD
