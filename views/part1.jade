@@ -48,9 +48,36 @@ section
             a(href="http://getfirebug.com", target="_blank") Firebug
         image(src="images/1-3-firebug.png")
 section
-    h4 檢測器基本功能介紹
-    ul
-        li DOM 檢測
-        li 網路流量監測
-        li 載入文件一覽
-        li 網頁主控台
+    section
+        h4 檢測器基本功能介紹
+        ul
+            li 頁面元素檢測
+            li 網路流量監測
+            li 載入文件一覽
+            li 網頁資源一覽
+            li 網頁主控台
+    section
+        h4 Elements 頁面元素檢測
+        ul
+            li 用來檢查網頁結構
+            li 可以查看每個 DOM 的內容、樣式等
+            li 能夠即時對 HTML 內文或 CSS 進行修改
+    section
+        h4 網路流量監測
+        ul
+            li 用來查看網頁上所有的 HTTP requests、WebSocket 連線等等
+            li 適合擔任 server &amp; browser 雙向溝通時的 debug 工作
+    section
+        h4 載入文件一覽
+        p 將 HTML、CSS、JS 以原始碼的形式列出
+        h4 網頁資源一覽
+        p 查看網頁所使用的 cookie、local storage 等
+    section
+        h4 網頁主控台
+        ul
+            li 顯示所有網頁產生的 CSS、JS 警告（warning）和錯誤（error）訊息
+            li
+                | JavaScript 的&nbsp;
+                code console.log
+                |  會顯示於此，適合用來對 JS 進行 debug
+            li 可以直接撰寫 JS 程式碼進行頁面內容的操作
