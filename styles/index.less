@@ -19,12 +19,29 @@
     background-color: #23241f;
 }
 
-.color-red {
-    color: red;
+.color- {
+    &red {
+        color: red;
+    }
+    &blue {
+        color: blue;
+    }
+    &green {
+        color: green;
+    }
+    &yellow {
+        color: #e0d000;
+    }
 }
 
 .clearfix::after {
     content: "";
     display: table;
     clear: both;
+}
+
+table.no-border {
+    tr, th, td {
+        border: 0;
+    }
 }

@@ -22,7 +22,7 @@ section
                 span.color-red R
                 span(style="color:green;") G
                 span(style="color:blue;") B
-                | 256 位元色系
+                |  256 位元色系
             li
                 | 常見的兩種寫法：
                 ol
@@ -53,12 +53,11 @@ section
                 code opacity: .7;
                 |  相同
     section
-        h4 規則合併
-        p margin &amp; padding
+        h4 規則合併：margin &amp; padding
         table(style="font-size:70%;"): tbody
             tr
                 td: code margin: 10px;
-                td: table(style="border:0;"): tbody
+                td: table.no-border: tbody
                     tr
                         td
                         td 10px
@@ -72,49 +71,61 @@ section
                         td 10px
                         td
             tr
-                td: code margin: 10px 5px;
-                td: table(style="border:0;"): tbody
+                td: code
+                    | margin: 10px
+                    span.color-red  5px
+                    | ;
+                td: table.no-border: tbody
                     tr
                         td
                         td 10px
                         td
                     tr
-                        td 5px
+                        td.color-red 5px
                         td(style="background:blue;")
-                        td 5px
+                        td.color-red 5px
                     tr
                         td
                         td 10px
                         td
             tr
-                td: code margin: 10px 5px 8px;
-                td: table(style="border:0;"): tbody
+                td: code
+                        | margin: 10px
+                        span.color-red  5px
+                        span.color-green  8px
+                        | ;
+                td: table.no-border: tbody
                     tr
                         td
                         td 10px
                         td
                     tr
-                        td 5px
+                        td.color-red 5px
                         td(style="background:blue;")
-                        td 5px
+                        td.color-red 5px
                     tr
                         td
-                        td 8px
+                        td.color-green 8px
                         td
             tr
-                td: code margin: 10px 0 8px 5px;
-                td: table(style="border:0;"): tbody
+                td: code
+                        | margin: 10px
+                        span.color-red  0
+                        span.color-green  8px
+                        span.color-yellow  5px
+                        | ;
+                td: table.no-border: tbody
                     tr
                         td
                         td 10px
                         td
                     tr
-                        td 5px
+                        td.color-yellow 5px
                         td(style="background:blue;")
-                        td 0px
+                        td.color-red 0px
                     tr
                         td
-                        td 8px
+                        td.color-green 8px
                         td
 
 section

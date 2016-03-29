@@ -67,6 +67,9 @@ section
             li 伺服器回傳對應的 HTTP 回應（Response）
             li 瀏覽器接收包含 HTML 的 HTTP 回應
             li 瀏覽器將 HTML 繪製（Render）到頁面上
+    section: img(src="images/http_flow.png")
+    section
+        iframe(width="420", height="315", src="https://www.youtube.com/embed/7_LPdttKXPc", frameborder="0", allowfullscreen)
     section
         h3 所以接下來會介紹的名詞包括
         ol
@@ -84,25 +87,25 @@ section
         li 通常會指向某個伺服器底下的資源
     section
         pre
-            span(style="color:red;") https
+            span.color-red https
             | ://
             span(style="color:orange;") www.himelight.com
-            span(style="color:green;") /user/teaualune
-            span(style="color:blue;") ?mobile=yes&amp;static
+            span.color-green /user/teaualune
+            span.color-blue ?mobile=yes&amp;static
             span(style="color:purple;") #highlights
         ul
             li
-                span(style="color:red;") Protocol
+                span.color-red Protocol
                 | : HTTP 或 HTTPS
             li
                 span(style="color:orange;") Domain
                 | : www.himelight.com 或 52.74.40.157
             li Port: 一般都省略，預設為 80 或 443
             li
-                span(style="color:green;") Path
+                span.color-green Path
                 | : 斜線後面的部份，可以想像成伺服器內部的層級結構
             li
-                span(style="color:blue;") Query
+                span.color-blue Query
                 | : 問號後面的部份，用 &amp; 銜接很多個
             li
                 span(style="color:purple;") Fragment
@@ -262,7 +265,7 @@ section
             |   &lt;/body&gt;
             | &lt;/html&gt;
     section
-        h3 &lt;head&gt;
+        p &lt;head&gt;
         ul
             li &lt;head&gt; 內部的元素不會呈現於畫面，而是用於輔助網頁
             li &lt;title&gt; 為網頁的標題
@@ -270,8 +273,7 @@ section
                 | &lt;meta&gt; 用來描述網頁的許多屬性，例如作者、網頁內容描述等
                 ul
                     li 由於搜尋引擎會讀取 &lt;meta&gt; 作為依據，此處對 Search Engine Optimization (SEO) 很重要
-    section
-        h3 &lt;body&gt;
+        p &lt;body&gt;
         ul
             li 瀏覽器會將整個 &lt;body&gt; 區塊的內容呈現於畫面上
             li 一個網頁對應一個 &lt;body&gt;，但 &lt;body&gt; 可以用 &lt;iframe&gt; 的形式變成巢狀，也就是嵌入網頁

@@ -1,4 +1,4 @@
-section
+section#part-2
     h1 CSS 與排版
     table(style="border:0;"): tbody: tr
         td: ul
@@ -22,8 +22,8 @@ section
             p 每個 DOM 從內到外分成四層：
             ul
                 li Content
-                li Border
                 li Padding
+                li Border
                 li Margin
     section
         h3 Content
@@ -99,7 +99,7 @@ section
                 | 本身就屬於 block-level 的元素（節錄）：
                 ul
                     li div （division，萬用的 block-level 元素，不具有語意）
-                    li h1, h2, ... h3 （heading，作為標題之用）
+                    li h1, h2, ... h6 （heading，作為標題之用）
                     li p （paragraph，作為內文之用）
                     li ul （unordered list，和 li 搭配作為列點）
                     li ol （ordered list，和 li 搭配作為數字列點）
@@ -254,7 +254,7 @@ section
                 |  包覆 inline-level 的&nbsp;
                 b items
             li
-                | 如果用過 Bootstrap，通常都用過
+                | 如果用過 Bootstrap，通常都用過&nbsp;
                 a(href="http://getbootstrap.com/css/#grid", target="_blank") Bootstrap 的 grid 系統
             li: a(href="http://purecss.io/grids", target="_blank") Pure.css 的 grid 系統
     section
@@ -282,7 +282,7 @@ section
         li 為了滿足日漸複雜的排版需求，比 grid 更強、更彈性的原生 CSS grid 系統
         li container 使用 display: flex; 來製作 flexbox（注意 container 本身以 block-level 模式排版）
         li: a(href="https://css-tricks.com/snippets/css/a-guide-to-flexbox", target="_blank") 最完整的 flexbox 參考資料
-        li: a(href="http://growpanion.com") Flexbox 能，舊款 grid 系統不能做到的範例
+        li: a(href="http://growpanion.com", target="_blank") Flexbox 能，舊款 grid 系統不能做到的範例
         li: a(href="http://caniuse.com/#feat=flexbox", target="_blank") IE 以外的瀏覽器請放心使用
 section
     h2 簡單的 grid 系統比較
@@ -411,7 +411,7 @@ section
         h3 需要和 JavaScript 搭配的元件
         ul
             li 由於具有互動性，因此只靠 HTML &amp; CSS 不夠
-            li 搭配 jQuery、jQuery plugin 等 JS library 仍然能以最少的客製 JS 程式碼達成效果
+            li 搭配 jQuery、jQuery UI、Bootstrap 等 JS library 仍然能以最少的客製 JS 程式碼達成效果
             li
                 | 常見的互動式元件：
                 ul
@@ -429,6 +429,14 @@ section
         //- li vw &amp; vh
         li RWD 的排版概念
 section
+    h3 Responsive Web Design
+    ul
+        li 跨裝置網頁的一種設計技巧，同一個網頁會自適應（self response）不同寬度的瀏覽器以達到最佳瀏覽效果
+        li
+            | 不需針對手機額外撰寫手機版網頁
+            ul: li 過於複雜、使用邏輯相差過大的網站，則建議分開撰寫
+        li 利用 HTML 的 viewport 宣告和 CSS 的 media query 達成 RWD 效果
+section
     h3 Mobile First
     section: ul
         li 2010 年代開始出現的網頁設計概念之一
@@ -438,7 +446,6 @@ section
         p 使用 mobile first 概念設計的好處：
         ul
             li 從簡單到複雜
-            li 一個網頁同時套用至不同尺寸的裝置，不需要額外寫另一個網頁
             li: a(href="https://www.google.com/webmasters/tools/mobile-friendly", target="_blank") SEO Friendly
             li 容易達成 RWD 的目標：one web for multiple screens
 section
@@ -448,8 +455,10 @@ section
             | .col-md-9 {
             |   width: 100%;
             | }
-            | @media (min-width: 992px) .col-md-9 {
-            |   width: 75%;
+            | @media (min-width: 992px) {
+            |   .col-md-9 {
+            |     width: 75%;
+            |   }
             | }
         ul
             li CSS 用來偵測瀏覽器大小、以套用不同 CSS 規則的一個機制
